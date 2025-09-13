@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ask Her Out</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="intro-popup" class="intro-popup-overlay">
+      <div class="intro-popup-content">
+        <p>so how do you like it hmm btao btao chalo rasmalai</p>
+        <button id="good-btn">aayyioooo</button>
+      </div>
+    </div>
+    
+    <div id="main-content" class="container hidden">
+      <div
+        class="tenor-gif-embed"
+        data-postid="6434709030671374669"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%"
+      >
+        <a href="https://tenor.com/view/happy-mochi-gif-6434709030671374669">Happy Mochi GIF</a>
+        from
+        <a href="https://tenor.com/search/happy-mochi-gifs">Happy Mochi GIFs</a>
+      </div>
+      <script
+        type="text/javascript"
+        async
+        src="https://tenor.com/embed.js"
+      ></script>
+      <h1 class="glow-text">Are you sure?  Think again!</h1>
+      <p class="subtitle">
+        My heart is ready to take a chance. I hope you'll reconsider...
+      </p>
+
+      <div class="btn">
+        <a href="yes.html">Yes</a>
+        <a href="no2.html">No</a>
+      </div>
+    </div>
+
+    <div class="flakes-container"></div>
+
+    <audio id="background-music" loop muted>
+      <source src="second-song.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <style>
+      /* --- CURSOR CUSTOMIZATION (Base64 encoded for maximum compatibility) --- */
+      body {
+        cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'><path d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z' fill='hotpink'/></svg>"), auto !important;
+      }
+
+      /* --- Keyframes for a smooth fade-in animation --- */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      /* --- Glowing animation for the pop-up content --- */
+      @keyframes glowPulse {
+        0%, 100% {
+          box-shadow: 0 0 10px 5px rgba(255, 182, 193, 0.5), inset 0 0 10px rgba(255, 182, 193, 0.5);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 20px 8px rgba(255, 182, 193, 0.8), inset 0 0 15px rgba(255, 182, 193, 0.8);
+          transform: scale(1.02);
+        }
+      }
+      
+      /* --- New keyframes to match the body background animation --- */
+      @keyframes pop-up-background-animation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* --- Styles for the pop-up overlay --- */
+      .intro-popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+      }
+      .intro-popup-overlay.fade-out {
+        animation: fadeOut 0.5s ease-out forwards;
+      }
+      .intro-popup-content {
+        /* Creating the heart shape */
+        position: relative;
+        width: 250px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: rotate(-45deg);
+        
+        /* Using the same animated background as the body */
+        background: linear-gradient(45deg, #FFC0CB, #FF69B4, #8A2BE2, #A855F7);
+        background-size: 400% 400%;
+        animation: pop-up-background-animation 15s ease infinite;
+        
+        /* Removing the box shadow and border for a clean heart shape */
+        box-shadow: none;
+        border: none;
+      }
+      
+      .intro-popup-content::before,
+      .intro-popup-content::after {
+        content: '';
+        position: absolute;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #FFC0CB, #FF69B4, #8A2BE2, #A855F7);
+        background-size: 400% 400%;
+        animation: pop-up-background-animation 15s ease infinite;
+      }
+      
+      .intro-popup-content::before {
+        top: -50%;
+        left: 0;
+      }
+      
+      .intro-popup-content::after {
+        top: 0;
+        right: -50%;
+      }
+      
+      /* Styling the content inside the heart */
+      .intro-popup-content > * {
+        transform: rotate(45deg); /* Counter-rotate the content */
+        z-index: 1;
+      }
+      
+      .intro-popup-content p {
+        font-family: 'Satisfy', cursive;
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 5px #ffc0cb, 0 0 10px #ff69b4;
+      }
+      .intro-popup-content button {
+        font-family: 'Satisfy', cursive;
+        padding: 10px 30px;
+        font-size: 1.5rem;
+        background: white;
+        color: #ff69b4;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        /* Re-adding the transform and box-shadow for hover effect */
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        animation: glowPulse 2s infinite ease-in-out;
+      }
+
+      .hidden {
+        display: none;
+      }
+      
+      /* Apply the fade-in animation to the main container */
+      .container.fade-in {
+        animation: fadeIn 1.5s ease-out forwards;
+      }
+
+      /* UPDATED styles for the main content to be more colorful and glowy */
+      .container h1 {
+        font-family: 'Satisfy', cursive;
+        color: #fff;
+        font-size: 3rem; /* You had this already, good! */
+        font-weight: 900;
+      }
+
+      .glow-text {
+        /* This is the key change for a more intense glow */
+        text-shadow:
+          0 0 2px #fff,
+          0 0 4px #fff,
+          0 0 6px #FFC0CB,
+          0 0 8px #FF69B4,
+          0 0 10px #8A2BE2,
+          0 0 12px #A855F7,
+          0 0 14px #FFD700;
+        animation: subtle-glow 3s infinite alternate;
+      }
+
+      @keyframes subtle-glow {
+        from {
+          text-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #FFC0CB,
+            0 0 8px #FF69B4;
+        }
+        to {
+          text-shadow:
+            0 0 5px #fff,
+            0 0 10px #fff,
+            0 0 15px #FFC0CB,
+            0 0 20px #FF69B4,
+            0 0 25px #8A2BE2,
+            0 0 30px #A855F7,
+            0 0 35px #FFD700;
+        }
+      }
+
+      .container .subtitle {
+        font-family: 'Satisfy', cursive;
+        color: #fff;
+        text-shadow:
+          0 0 5px #FFC0CB,
+          0 0 10px #FF69B4;
+      }
+      
+      .container .btn a {
+        font-family: 'Satisfy', cursive;
+        text-shadow: 0 0 5px #ffc0cb, 0 0 10px #ff69b4;
+      }
+      
+      /* --- Styles for the floating flakes --- */
+      .flakes-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        overflow: hidden;
+      }
+
+      .flake {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        animation: flake-float-up linear infinite, flake-glow 1.5s infinite alternate;
+      }
+      
+      @keyframes flake-float-up {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.8;
+        }
+        90% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes flake-glow {
+        from {
+          box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8);
+        }
+        to {
+          box-shadow: 0 0 25px 10px rgba(255, 255, 255, 1);
+        }
+      }
+    </style>
+
+    <script>
+      const music = document.getElementById('background-music');
+      const goodBtn = document.getElementById('good-btn');
+      const introPopup = document.getElementById('intro-popup');
+      const mainContent = document.getElementById('main-content');
+      const flakesContainer = document.querySelector('.flakes-container');
+      
+      goodBtn.addEventListener('click', () => {
+        music.muted = false;
+        music.play();
+        
+        introPopup.classList.add('fade-out');
+        
+        introPopup.addEventListener('animationend', () => {
+          introPopup.style.display = 'none';
+        });
+
+        mainContent.classList.remove('hidden');
+        mainContent.classList.add('fade-in');
+        
+        // Start the flakes after a short delay
+        setTimeout(() => {
+          setInterval(createFlake, 250);
+        }, 1000);
+      });
+
+      function createFlake() {
+        const flake = document.createElement('div');
+        flake.classList.add('flake');
+        
+        const randomSize = Math.random() * 5 + 3;
+        flake.style.width = `${randomSize}px`;
+        flake.style.height = `${randomSize}px`;
+
+        const randomLeft = Math.random() * window.innerWidth;
+        flake.style.left = `${randomLeft}px`;
+
+        const randomDuration = Math.random() * 10 + 10;
+        flake.style.animationDuration = `${randomDuration}s`;
+        
+        flakesContainer.appendChild(flake);
+        
+        setTimeout(() => {
+          flake.remove();
+        }, randomDuration * 1000);
+      }
+    </script>
+  </body>
+</html>
